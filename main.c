@@ -2,19 +2,22 @@
 
 char Board[3][3];
 
+void clearBoard();
 void printBoard();
 
 int main()
+{
+    clearBoard();
+    printBoard();
+}
+void clearBoard()
 {
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         Board[i][j] = ' ';
     }
-
-    printBoard();
 }
-
 void printBoard()
 {
     printf(" %c | %c | %c\n", Board[0][0], Board[0][1], Board[0][2]);
