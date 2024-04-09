@@ -17,6 +17,8 @@ int main()
 
     playerMove();
 
+    printBoard();
+
 
     return 0;
 }
@@ -24,10 +26,15 @@ int main()
 
 void clearBoard()
 {
+    int k = 0;
+    
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
-        Board[i][j] = ' ';
+        {
+            Board[i][j] = '1' + k;
+            k++;
+        }
     }
 }
 
