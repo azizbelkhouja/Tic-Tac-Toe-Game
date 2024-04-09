@@ -15,12 +15,14 @@ int main()
 {
 
     clearBoard();
-    
-    printBoard();
 
-    playerMove();
+    while (emptyplaces > 0)
+    {
+        printBoard();
+        playerMove();
+        printBoard();
+    }
 
-    printBoard();
 
 
     return 0;
@@ -52,18 +54,25 @@ void playerMove()
     int playerRow, playerColumn;
 
     do {
+        
         printf("insert row (1-3): ");
         scanf("%d", &playerRow);
         printf("insert column (1-3): ");
         scanf("%d", &playerColumn);
 
+        if(isempty(playerRow-1, playerColumn-1))
+        {
         Board[playerRow-1][playerColumn-1] = PLAYER;
-    } while (playerRow < 1 || playerRow > 3 || playerColumn < 1 || playerColumn > 3);
+        emptyplaces --;
+        } else printf("\ncase not empty, choose again\n");
+
+    } while ((playerRow < 1 || playerRow > 3 || playerColumn < 1 || playerColumn > 3) && !isempty(playerRow-1, playerColumn-1));
     
     
 }
 
-bool isempty()
+bool isempty(int row, int column)
 {
-    
+    if (Board[row][column] == ' ') return true;
+    else return false;
 }
