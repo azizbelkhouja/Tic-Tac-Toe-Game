@@ -1,12 +1,15 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 char Board[3][3];
 const char PLAYER = 'X';
 const char COMPUTER = 'O';
+int emptyplaces = 9;
 
 void clearBoard();
 void printBoard();
 void playerMove();
+bool isempty();
 
 int main()
 {
@@ -26,14 +29,11 @@ int main()
 
 void clearBoard()
 {
-    int k = 0;
-    
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
-            Board[i][j] = '1' + k;
-            k++;
+            Board[i][j] = ' ';
         }
     }
 }
@@ -49,48 +49,21 @@ void printBoard()
 
 void playerMove()
 {
-    int place;
+    int playerRow, playerColumn;
+
     do {
-        printf("insert place number(1-9): ");
-        scanf("%d", &place);
-        switch(place) 
-        {
-            case 1: 
-                Board[0][0] = 'X';
-            break;
+        printf("insert row (1-3): ");
+        scanf("%d", &playerRow);
+        printf("insert column (1-3): ");
+        scanf("%d", &playerColumn);
 
-            case 2: 
-                Board[0][1] = 'X';
-            break;
+        Board[playerRow-1][playerColumn-1] = PLAYER;
+    } while (playerRow < 1 || playerRow > 3 || playerColumn < 1 || playerColumn > 3);
+    
+    
+}
 
-            case 3: 
-                Board[0][2] = 'X';
-            break;
-
-            case 4: 
-                Board[1][0] = 'X';
-            break;
-
-            case 5: 
-                Board[1][1] = 'X';
-            break;
-
-            case 6: 
-                Board[1][2] = 'X';
-            break;
-
-            case 7: 
-                Board[2][0] = 'X';
-            break;
-
-            case 8: 
-                Board[2][1] = 'X';
-            break;
-
-            case 9: 
-                Board[2][2] = 'X';
-            break;
-        }
-    } while (place < 1 || place > 9);
+bool isempty()
+{
     
 }
